@@ -1,0 +1,67 @@
+﻿@model Bookush.Models.BookViewModel
+
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Book</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Authors" class="control-label"></label>
+                <input asp-for="Authors" class="form-control" />
+                <span asp-validation-for="Authors" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Edition" class="control-label"></label>
+                <input asp-for="Edition" class="form-control" />
+                <span asp-validation-for="Edition" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfPublished" class="control-label">Published Year</label>
+                <input asp-for="DateOfPublished" class="form-control" />
+                <span asp-validation-for="DateOfPublished" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Genres" class="control-label"></label>
+                <select asp-for="Genres" asp-items="Html.GetEnumSelectList<Bookush.DAL.DBO.Genres>()" class="form-control">
+                    <option> Select a genre</option>
+                </select>
+                <span asp-validation-for="Genres" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Barcode" class="control-label"></label>
+                <input asp-for="Barcode" class="form-control" />
+                <span asp-validation-for="Barcode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PublisherId" class="control-label">Publisher</label>
+                <select asp-for="PublisherId" class="form-control" asp-items="Model.Publishers"></select>
+                <span asp-validation-for="PublisherId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
