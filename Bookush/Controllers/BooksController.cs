@@ -77,16 +77,16 @@ namespace Bookush.Controllers
             {
                 return NotFound();
             }
-
+            
             var book = await _bookRepo.GetByIdAsync(id.Value);
             if (book == null)
             {
                 return NotFound();
             }
-
+                        
             var bookViewModel = new BookViewModel ();
             bookViewModel.Id = book.Id;
-            bookViewModel.Publishers = new SelectList(await _publisherRepo.GetAllAsync(), "Id", "Name");
+            bookViewModel.Publishers = new SelectList(await _publisherRepo.GetAllAsync(), "Id", "Name", book.PublisherId);
             return View(bookViewModel);
         }
 
@@ -105,7 +105,7 @@ namespace Bookush.Controllers
             if (ModelState.IsValid)
             {
                 try
-                {
+                { 
                     await _bookRepo.UpdateAsync(book);
                 }
                 catch (DbUpdateConcurrencyException)

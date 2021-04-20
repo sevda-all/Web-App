@@ -6,13 +6,20 @@
 
 <h2>All Publishers</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
+<p style="
+        background: #000000;
+        text-align:center;
+        padding: 5px;
+        width: 100px;
+        border: 1px solid rgb(43, 0, 0);
+        margin: 15px;">
+    <a style="color: #ffffff;" asp-action="Create">Add New</a>
 </p>
+
 <table class="table">
-    <thead>
+    <thead style=" font-size: 16px; color: #80514a; font-family: cursive;">
         <tr>
-            <th>
+            <th style=" font-weight: bold;">
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
@@ -28,26 +35,28 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Country)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style=" font-weight: bold;">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" style="color: #80514a;">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" style="color: #80514a;">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" style="color: #80514a;">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+<img src="~/images/library1.jpg" alt="" style="width:60%;" />

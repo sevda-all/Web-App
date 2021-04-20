@@ -1,0 +1,19 @@
+
+
+dl.dl-horizontal {
+    margin-top: 30px;
+    
+}
+
+dl.dl-horizontal dt {
+    padding: 10px;
+    font-size: 16px;
+    width: 170px;
+}
+
+
+dl.dl-horizontal dt, dl.dl-horizontal dd {
+    padding: 10px;
+    font-size: 16px;
+
+}

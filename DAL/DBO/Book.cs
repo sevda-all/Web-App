@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Bookush.DAL.DBO
 {
-    public class Book: IValidatableObject
+    public class Book : IValidatableObject
     {
         public int Id { get; set; }
 
@@ -22,21 +22,28 @@ namespace Bookush.DAL.DBO
 
         [Required]
         public string Edition { get; set; }
-        
+
         [DisplayName("Date of publication")]
+        [DataType(DataType.Date)]
         public DateTime DateOfPublished { get; set; }
-        
+
         public Genres Genres { get; set; }
 
         public string Barcode { get; set; }
 
+        [DisplayName("Publisher")]
         public int? PublisherId { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            var validationResult = new List<ValidationResult>();
-
-            return validationResult;
+            if ( DateOfPublished <= DateTime.Now.AddYears(-100))
+            { 
+                  yield return new ValidationResult("Could not be so old", new[] {"DateOfPublished" });
+            }
+            if (DateTime.Now.AddMonths(-1) <= DateOfPublished)
+            {
+                yield return new ValidationResult("Should be at least +1 month", new[] { "DateOfPublished" });
+            }
         }
         public virtual Publisher Publisher { get; set; }
     }
@@ -46,7 +53,8 @@ namespace Bookush.DAL.DBO
         Fiction,
         Detective,
         Novel,
-        Fantasy
+        Fantasy,
+        Academic
 
     }
 }
